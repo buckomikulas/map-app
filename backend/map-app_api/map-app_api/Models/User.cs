@@ -2,18 +2,17 @@
 {
     public class User
     {
-        public int user_id { get; set; }
-        public required string name { get; set; } 
+        public int UserId { get; set; }
+        public required string Name { get; set; } 
 
         // User doesn't have to add their surname
-        public string? surname { get; set; }
+        public string? Surname { get; set; }
 
         // Change later to standalone tables and add dependencies
-        public int hobby { get; set; }
-        public int travelling_type { get; set; }
-        public int route_type { get; set; }
-        public int companions { get; set; 
-        }
+        public int Hobby { get; set; }
+        public int TravellingType { get; set; }
+        public int RouteType { get; set; }
+        public int Companions { get; set; }
 
 
     }

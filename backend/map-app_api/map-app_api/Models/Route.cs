@@ -2,11 +2,11 @@
 {
     public class Route
     {
-        public int route_id { get; set; }
-        public required string name { get; set; }
-        public required string location { get; set; }
-        public DateTime from { get; set; }
-        public DateTime to { get; set; }
+        public int RouteId { get; set; }
+        public required string Name { get; set; }
+        public required string Location { get; set; }
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }
 
     }
 }
