@@ -8,5 +8,10 @@
         public DateTime From { get; set; }
         public DateTime To { get; set; }
 
+        // Relations
+        public ICollection<Stop> Stops { get; set; } = new List<Stop>();
+        public ICollection<UserRoute> UserRoutes { get; set; } = new List<UserRoute>(); 
+        public ICollection<RouteTag> RouteTags { get; set; } = new List<RouteTag>();
+
     }
 }

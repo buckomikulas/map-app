@@ -14,6 +14,10 @@
         public int RouteType { get; set; }
         public int Companions { get; set; }
 
+        // Relations
+
+        public ICollection<UserRoute> UserRoutes { get; set; } = new List<UserRoute>();
+
 
     }
 }
