@@ -1,4 +1,5 @@
 ﻿using map_app_api.Interfaces;
+using map_app_api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace map_app_api.Controllers
@@ -17,6 +18,7 @@ namespace map_app_api.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
         {
             var users = m_userRepository.GetUsers();
