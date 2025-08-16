@@ -9,6 +9,8 @@ namespace map_app_api.Helper
         public MappingProfiles()
         {
             CreateMap<User, UserDTO>();
+            CreateMap<Models.Route, RouteDTO>();
+
         }
     }
 }

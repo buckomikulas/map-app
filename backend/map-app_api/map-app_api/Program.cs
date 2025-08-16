@@ -28,6 +28,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 builder.Services.AddTransient<DataSeed>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRouteRepository, RouteRepository>();
+
 
 var app = builder.Build();
 
