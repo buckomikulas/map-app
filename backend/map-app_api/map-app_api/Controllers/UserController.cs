@@ -42,5 +42,15 @@ namespace map_app_api.Controllers
             return Ok(user);
 
         }
+        [HttpGet("name/{name}")]
+        public IActionResult GetUserByName(string name)
+        {
+            var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(name));
+            if (user == null)
+                return NotFound($"User with name {name} not found.");
+
+            return Ok(user);
+        }
+
     }
 }

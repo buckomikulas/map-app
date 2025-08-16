@@ -20,9 +20,20 @@ namespace map_app_api.Repository
             return m_dataContext.Users.OrderBy(u => u.UserId).ToList();
         }
 
-        public User GetUser(int id) 
+        public User? GetUser(int id) 
         {             
             return m_dataContext.Users.FirstOrDefault(u => u.UserId == id);
         }
+
+        public User? GetUser(string name)
+        {
+            return m_dataContext.Users.FirstOrDefault(u => u.Name == name);
+        }
+
+        public bool UserExists(int id)
+        {
+            return m_dataContext.Users.Any(u => u.UserId == id);
+        }
+
     }
 }
