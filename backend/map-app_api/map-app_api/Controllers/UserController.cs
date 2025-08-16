@@ -25,6 +25,8 @@ namespace map_app_api.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
         {
+
+            // Using AutoMapper to map User to UserDTO
             var users = m_mapper.Map<IEnumerable<UserDTO>>(m_userRepository.GetUsers());
 
             if (users == null || !users.Any())
@@ -37,6 +39,7 @@ namespace map_app_api.Controllers
         public IActionResult GetUser(int id)
         {
             var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(id));
+           
             if (user == null)
                 return NotFound($"User with ID {id} not found.");
             return Ok(user);
@@ -46,6 +49,7 @@ namespace map_app_api.Controllers
         public IActionResult GetUserByName(string name)
         {
             var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(name));
+            
             if (user == null)
                 return NotFound($"User with name {name} not found.");
 
