@@ -1,5 +1,6 @@
 using map_app_api;
 using map_app_api.Data;
+using map_app_api.Helper;
 using map_app_api.Interfaces;
 using map_app_api.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,8 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddHttpClient();
+
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 // Add Swagger/OpenAPI support
 builder.Services.AddEndpointsApiExplorer();
