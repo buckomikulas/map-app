@@ -17,7 +17,7 @@ namespace map_app_api.Controllers
         public RouteController(IRouteRepository routeRepository, IMapper mapper)
         {
             m_routeRepository = routeRepository;
-            m_mapper = mapper;  
+            m_mapper = mapper;
         }
 
         [HttpGet]
@@ -32,5 +32,26 @@ namespace map_app_api.Controllers
 
             return Ok(routes);
         }
-    }
+
+        [HttpGet("{id}")]
+        public IActionResult GetRoute(int id)
+        {
+            var route = m_mapper.Map<RouteDTO>(m_routeRepository.GetRoute(id));
+
+            if (route == null)
+                return NotFound($"Route with ID {id} not found.");
+
+            return Ok(route);
+        }
+
+        [HttpGet("name/{name}")]
+        public IActionResult GetRouteByName(string name)
+        {
+            var route = m_mapper.Map<RouteDTO>(m_routeRepository.GetRoute(name));
+
+            if (route == null)
+                return NotFound($"Route with name {name} not found.");
+
+            return Ok(route);
+        }
 }
