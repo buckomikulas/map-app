@@ -8,8 +8,7 @@ namespace map_app_api.Helper
     {
         public MappingProfiles()
         {
-            CreateMap<User, UserDTO>().ForMember(dest => dest.RouteIds,
-                                                 opt => opt.MapFrom(src => src.UserRoutes.Select(ur => ur.RouteId))); 
+            CreateMap<User, UserDTO>();
         }
     }
 }

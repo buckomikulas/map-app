@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddHttpClient();
 
-builder.Services.AddAutoMapper(typeof(MappingProfiles));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Add Swagger/OpenAPI support
 builder.Services.AddEndpointsApiExplorer();
