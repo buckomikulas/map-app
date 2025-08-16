@@ -1,5 +1,7 @@
 using map_app_api;
 using map_app_api.Data;
+using map_app_api.Interfaces;
+using map_app_api.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 
 builder.Services.AddTransient<DataSeed>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
