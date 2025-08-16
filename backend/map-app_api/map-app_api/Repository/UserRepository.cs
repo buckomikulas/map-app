@@ -19,5 +19,10 @@ namespace map_app_api.Repository
         {
             return m_dataContext.Users.OrderBy(u => u.UserId).ToList();
         }
+
+        public User GetUser(int id) 
+        {             
+            return m_dataContext.Users.FirstOrDefault(u => u.UserId == id);
+        }
     }
 }

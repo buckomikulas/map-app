@@ -8,7 +8,7 @@ namespace map_app_api.Controllers
     [Route("api/[controller]")] // endpoint is api/users
     public class UserController : ControllerBase
     {
-        
+
         private readonly IUserRepository m_userRepository;
 
         // Constructor injection 
@@ -23,11 +23,20 @@ namespace map_app_api.Controllers
         {
             var users = m_userRepository.GetUsers();
 
-            if(users == null || !users.Any())
+            if (users == null || !users.Any())
                 return NotFound("No users found.");
 
             return Ok(users);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetUser(int id)
+        {
+            var user = m_userRepository.GetUser(id);
+            if (user == null)
+                return NotFound($"User with ID {id} not found.");
+            return Ok(user);
+
+        }
     }
 }
