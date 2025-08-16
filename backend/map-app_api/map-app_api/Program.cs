@@ -39,6 +39,7 @@ if(args.Length > 0 && args[0] == "seed")
     using (var scope = app.Services.CreateScope())
     {
         var dataSeed = scope.ServiceProvider.GetRequiredService<DataSeed>();
+        dataSeed.ClearData();
         dataSeed.SeedData();
     }
 }

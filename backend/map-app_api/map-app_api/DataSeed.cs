@@ -13,6 +13,16 @@ namespace map_app_api
         {
             m_context = context;
         }
+        public void ClearData()
+        {
+            m_context.UserRoutes.RemoveRange(m_context.UserRoutes);
+            m_context.RouteTags.RemoveRange(m_context.RouteTags);
+            m_context.Stops.RemoveRange(m_context.Stops);
+            m_context.Routes.RemoveRange(m_context.Routes);
+            m_context.Users.RemoveRange(m_context.Users);
+            m_context.Tags.RemoveRange(m_context.Tags);
+            m_context.SaveChanges();
+        }
 
 
         public void SeedData()
@@ -32,17 +42,12 @@ namespace map_app_api
                 var route2 = new Models.Route { Name = "Dream path",
                                                 Location = "Paris",
                                                 From = new DateTime(2025, 7, 7),
-                                                To = new DateTime(2025, 7, 14),};
+                                                To = new DateTime(2025, 7, 14)};
 
                 var tag1 = new Tag { Name = "Historic" };
                 var tag2 = new Tag { Name = "Modern" };
                 var tag3 = new Tag { Name = "Architecture" };
 
-                // Add data to the context
-                m_context.Users.AddRange(user1, user2);
-                m_context.Routes.AddRange(route1, route2);
-                m_context.Tags.AddRange(tag1, tag2, tag3);  
-                m_context.SaveChanges();
 
                 // Create relationships
                 var userRoutes = new List<UserRoute>
@@ -57,6 +62,27 @@ namespace map_app_api
                     new RouteTag { Route = route1, Tag = tag2 },
                     new RouteTag { Route = route2, Tag = tag3 }
                 };
+
+                var route1Stops = new List<Stop>
+                {
+                    new Stop { Name = "RouteStop 1", Route = route1, TimeSpend = new TimeSpan(1,0,0), Fact = "An interesting fact"},
+                    new Stop { Name = "RouteStop 2", Route = route1, TimeSpend = new TimeSpan(1,30,0), Fact = "Not so interesting fact"},
+                };
+
+                var route2Stops = new List<Stop>
+                {
+                    new Stop { Name = "RouteStop 3", Route = route2, TimeSpend = new TimeSpan(4,0,0), Fact = "Facts"},
+                    new Stop { Name = "RouteStop 4", Route = route2, TimeSpend = new TimeSpan(2,30,0), Fact = "FUnny fact"},
+                };
+
+                route1.Stops = route1Stops;
+                route2.Stops = route2Stops; 
+
+                // Add data to the context
+                m_context.Users.AddRange(user1, user2);
+                m_context.Routes.AddRange(route1, route2);
+                m_context.Tags.AddRange(tag1, tag2, tag3);
+
 
                 // Add relationships to the context
                 m_context.UserRoutes.AddRange(userRoutes);  
