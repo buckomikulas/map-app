@@ -8,6 +8,6 @@ namespace map_app_api.Interfaces
         User? GetUser(int id);
         User? GetUser(string name);
         bool UserExists(int id);
-
+        ICollection<Models.Route> GetUserRoutes(int userId);
     }
 }

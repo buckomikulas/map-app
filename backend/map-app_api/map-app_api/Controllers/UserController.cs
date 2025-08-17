@@ -39,7 +39,7 @@ namespace map_app_api.Controllers
         public IActionResult GetUser(int id)
         {
             var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(id));
-           
+
             if (user == null)
                 return NotFound($"User with ID {id} not found.");
             return Ok(user);
@@ -49,12 +49,22 @@ namespace map_app_api.Controllers
         public IActionResult GetUserByName(string name)
         {
             var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(name));
-            
+
             if (user == null)
                 return NotFound($"User with name {name} not found.");
 
             return Ok(user);
         }
 
+        [HttpGet("routes/{userId}")]
+        public IActionResult GetRoutesByUserId(int userId)
+        {
+            var routes = m_mapper.Map<IEnumerable<RouteDTO>>(m_userRepository.GetUserRoutes(userId));
+
+            if (routes == null || !routes.Any())
+                return NotFound($"No routes found for user with ID {userId}.");
+
+            return Ok(routes);
+        }
     }
 }

@@ -35,5 +35,12 @@ namespace map_app_api.Repository
             return m_dataContext.Users.Any(u => u.UserId == id);
         }
 
+        public ICollection<Models.Route> GetUserRoutes(int userId)
+        {
+            return m_dataContext.UserRoutes
+                .Where(ur => ur.UserId == userId)
+                .Select(ur => ur.Route)
+                .ToList();
+        }
     }
 }
