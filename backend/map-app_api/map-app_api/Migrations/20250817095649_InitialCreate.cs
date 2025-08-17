@@ -72,7 +72,7 @@ namespace map_app_api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stops", x => x.StopId);
+                    table.PrimaryKey("PK_Stops", x => new { x.StopId, x.RouteId });
                     table.ForeignKey(
                         name: "FK_Stops_Routes_RouteId",
                         column: x => x.RouteId,

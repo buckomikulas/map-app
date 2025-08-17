@@ -72,6 +72,9 @@ namespace map_app_api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StopId"));
 
+                    b.Property<int>("RouteId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Fact")
                         .HasColumnType("nvarchar(max)");
 
@@ -79,16 +82,13 @@ namespace map_app_api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RouteId")
-                        .HasColumnType("int");
-
                     b.Property<TimeSpan>("TimeSpend")
                         .HasColumnType("time");
 
                     b.Property<string>("Tip")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("StopId");
+                    b.HasKey("StopId", "RouteId");
 
                     b.HasIndex("RouteId");
 

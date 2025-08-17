@@ -48,6 +48,12 @@ namespace map_app_api
                 var tag2 = new Tag { Name = "Modern" };
                 var tag3 = new Tag { Name = "Architecture" };
 
+                // Add data to the context
+                m_context.Users.AddRange(user1, user2);
+                m_context.Routes.AddRange(route1, route2);
+                m_context.Tags.AddRange(tag1, tag2, tag3);
+                m_context.SaveChanges();
+
 
                 // Create relationships
                 var userRoutes = new List<UserRoute>
@@ -63,6 +69,10 @@ namespace map_app_api
                     new RouteTag { Route = route2, Tag = tag3 }
                 };
 
+                // Add relationships to the context
+                m_context.UserRoutes.AddRange(userRoutes);
+                m_context.RouteTags.AddRange(routeTags);
+
                 var route1Stops = new List<Stop>
                 {
                     new Stop { Name = "RouteStop 1", Route = route1, TimeSpend = new TimeSpan(1,0,0), Fact = "An interesting fact"},
@@ -75,20 +85,10 @@ namespace map_app_api
                     new Stop { Name = "RouteStop 4", Route = route2, TimeSpend = new TimeSpan(2,30,0), Fact = "FUnny fact"},
                 };
 
-                route1.Stops = route1Stops;
-                route2.Stops = route2Stops; 
-
-                // Add data to the context
-                m_context.Users.AddRange(user1, user2);
-                m_context.Routes.AddRange(route1, route2);
-                m_context.Tags.AddRange(tag1, tag2, tag3);
-
-
-                // Add relationships to the context
-                m_context.UserRoutes.AddRange(userRoutes);  
-                m_context.RouteTags.AddRange(routeTags);
-
+                m_context.Stops.AddRange(route1Stops.Concat(route2Stops));
                 m_context.SaveChanges();
+
+
             }
 
         }

@@ -32,6 +32,10 @@ namespace map_app_api.Data
                 .HasKey(s => new { s.StopId, s.RouteId });
 
             modelBuilder.Entity<Stop>()
+                 .Property(s => s.StopId)
+                 .ValueGeneratedOnAdd(); // EF Core bude StopId generovat automaticky
+
+            modelBuilder.Entity<Stop>()
                 .HasOne(s => s.Route)
                 .WithMany(r => r.Stops)
                 .HasForeignKey(s => s.RouteId)
