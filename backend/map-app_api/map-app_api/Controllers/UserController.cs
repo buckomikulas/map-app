@@ -22,7 +22,8 @@ namespace map_app_api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<UserDTO>))]
+        [ProducesResponseType(404, Type = typeof(string))]
         public IActionResult GetUsers()
         {
 
@@ -34,8 +35,11 @@ namespace map_app_api.Controllers
 
             return Ok(users);
         }
+        //-------------------------------------------------------------------------------
 
         [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(UserDTO))]
+        [ProducesResponseType(404, Type = typeof(string))]
         public IActionResult GetUser(int id)
         {
             var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(id));
@@ -45,7 +49,11 @@ namespace map_app_api.Controllers
             return Ok(user);
 
         }
+        //-------------------------------------------------------------------------------
+
         [HttpGet("name/{name}")]
+        [ProducesResponseType(200, Type = typeof(UserDTO))]
+        [ProducesResponseType(404, Type = typeof(string))
         public IActionResult GetUserByName(string name)
         {
             var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(name));
@@ -55,8 +63,11 @@ namespace map_app_api.Controllers
 
             return Ok(user);
         }
+        //-------------------------------------------------------------------------------
 
         [HttpGet("routes/{userId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<RouteDTO>))]
+        [ProducesResponseType(404, Type = typeof(string))]
         public IActionResult GetRoutesByUserId(int userId)
         {
             var routes = m_mapper.Map<IEnumerable<RouteDTO>>(m_userRepository.GetUserRoutes(userId));
