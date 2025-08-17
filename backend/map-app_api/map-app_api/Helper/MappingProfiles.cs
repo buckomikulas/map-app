@@ -11,6 +11,8 @@ namespace map_app_api.Helper
             CreateMap<User, UserDTO>();
             CreateMap<Models.Route, RouteDTO>();
             CreateMap<Stop, StopDTO>();
+            CreateMap<Tag, TagDTO>();
+
 
         }
     }

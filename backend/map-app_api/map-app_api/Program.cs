@@ -30,6 +30,8 @@ builder.Services.AddTransient<DataSeed>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRouteRepository, RouteRepository>();
 builder.Services.AddScoped<IStopRepository, StopRepository>();
+builder.Services.AddScoped<ITagRepository, TagRepository>();
+
 
 
 
