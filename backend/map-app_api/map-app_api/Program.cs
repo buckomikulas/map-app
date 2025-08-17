@@ -29,6 +29,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddTransient<DataSeed>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRouteRepository, RouteRepository>();
+builder.Services.AddScoped<IStopRepository, StopRepository>();
+
 
 
 var app = builder.Build();

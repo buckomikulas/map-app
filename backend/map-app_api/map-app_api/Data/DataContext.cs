@@ -33,13 +33,13 @@ namespace map_app_api.Data
 
             modelBuilder.Entity<Stop>()
                  .Property(s => s.StopId)
-                 .ValueGeneratedOnAdd(); // EF Core bude StopId generovat automaticky
+                 .ValueGeneratedOnAdd(); // Auto-increment StopId
 
             modelBuilder.Entity<Stop>()
                 .HasOne(s => s.Route)
                 .WithMany(r => r.Stops)
                 .HasForeignKey(s => s.RouteId)
-                .OnDelete(DeleteBehavior.Cascade); // když smažeš trasu, smaž i stops
+                .OnDelete(DeleteBehavior.Cascade); // Delete stops when the route is deleted
 
             // Many-to-many relationship between Routes and Tags
             modelBuilder.Entity<RouteTag>()
