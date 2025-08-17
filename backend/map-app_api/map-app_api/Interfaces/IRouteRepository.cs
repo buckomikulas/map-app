@@ -7,7 +7,7 @@ namespace map_app_api.Interfaces
         ICollection<Models.Route> GetRoutes();
         Models.Route? GetRoute(string name);
         Models.Route? GetRoute(int id);
-        bool RouteExists(int id);
+        bool RouteExists(string name);
         ICollection<Stop> GetStopsOnRoute(int id);
     }
 }

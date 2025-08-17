@@ -18,5 +18,10 @@ namespace map_app_api.Repository
                 .OrderBy(t => t.TagId)
                 .ToList();
         }
+
+        public bool TagExists(string name)
+        {
+            return m_dataContext.Tags.Any(t => t.Name == name);
+        }
     }
 }

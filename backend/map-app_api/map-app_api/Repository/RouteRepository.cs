@@ -35,9 +35,9 @@ namespace map_app_api.Repository
             return m_dataContext.Stops.Where(s=> s.RouteId == id).OrderBy(s => s.StopId).ToList();
         }
 
-        public bool RouteExists(int id)
+        public bool RouteExists(string name)
         {
-            return m_dataContext.Routes.Any(r => r.RouteId == id);
+            return m_dataContext.Routes.Any(r => r.Name == name);
         }
 
     }

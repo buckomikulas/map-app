@@ -5,5 +5,6 @@ namespace map_app_api.Interfaces
     public interface ITagRepository
     {
         ICollection<Tag> GetTags();
+        bool TagExists(string name);
     }
 }

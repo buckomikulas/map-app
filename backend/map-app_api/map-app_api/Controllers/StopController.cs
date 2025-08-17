@@ -28,5 +28,17 @@ namespace map_app_api.Controllers
 
             return Ok(stop);
         }
+
+        [HttpGet("by-name/{stopName}/{routeName}")]
+        [ProducesResponseType(200, Type = typeof(StopDTO))]
+        public IActionResult GetStop(string stopName, string routeName)
+        {
+            var stop = m_mapper.Map<StopDTO>(m_stopRepository.GetStop(stopName, routeName));
+
+            if (stop == null)
+                return NotFound($"Stop with id {stopName}, on route with id {routeName} not found.");
+
+            return Ok(stop);
+        }
     }
 }

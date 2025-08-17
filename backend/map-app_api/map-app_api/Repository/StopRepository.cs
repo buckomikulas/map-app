@@ -17,5 +17,16 @@ namespace map_app_api.Repository
             return m_dataContext.Stops
                 .FirstOrDefault(s => s.StopId == stopId && s.RouteId == routeId);
         }
+
+        public Stop? GetStop(string stopName, string routeName)
+        {
+            return m_dataContext.Stops
+                .FirstOrDefault(s => s.Name == stopName && s.Route.Name == routeName);
+        }
+
+        public bool StopExists(string stopName, string routeName)
+        {
+            return m_dataContext.Stops.Any(s => s.Name == stopName && s.Route.Name == routeName);
+        }
     }
 }
