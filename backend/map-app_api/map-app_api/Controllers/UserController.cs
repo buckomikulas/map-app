@@ -37,29 +37,29 @@ namespace map_app_api.Controllers
         }
         //-------------------------------------------------------------------------------
 
-        [HttpGet("{id}")]
+        [HttpGet("{userId}")]
         [ProducesResponseType(200, Type = typeof(UserDTO))]
         [ProducesResponseType(404, Type = typeof(string))]
-        public IActionResult GetUser(int id)
+        public IActionResult GetUser(int userId)
         {
-            var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(id));
+            var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(userId));
 
             if (user == null)
-                return NotFound($"User with ID {id} not found.");
+                return NotFound($"User with ID {userId} not found.");
             return Ok(user);
 
         }
         //-------------------------------------------------------------------------------
 
-        [HttpGet("name/{name}")]
+        [HttpGet("name/{userName}")]
         [ProducesResponseType(200, Type = typeof(UserDTO))]
         [ProducesResponseType(404, Type = typeof(string))]
-        public IActionResult GetUserByName(string name)
+        public IActionResult GetUserByName(string userName)
         {
-            var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(name));
+            var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(userName));
 
             if (user == null)
-                return NotFound($"User with name {name} not found.");
+                return NotFound($"User with name {userName} not found.");
 
             return Ok(user);
         }

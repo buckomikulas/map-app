@@ -32,9 +32,6 @@ builder.Services.AddScoped<IRouteRepository, RouteRepository>();
 builder.Services.AddScoped<IStopRepository, StopRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 
-
-
-
 var app = builder.Build();
 
 if(args.Length > 0 && args[0] == "seed")

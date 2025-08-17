@@ -37,29 +37,29 @@ namespace map_app_api.Controllers
         }
         //-------------------------------------------------------------------------------
 
-        [HttpGet("{id}")]
+        [HttpGet("{routeId}")]
         [ProducesResponseType(200, Type = typeof(RouteDTO))]
         [ProducesResponseType(404, Type = typeof(string))]
-        public IActionResult GetRoute(int id)
+        public IActionResult GetRoute(int routeId)
         {
-            var route = m_mapper.Map<RouteDTO>(m_routeRepository.GetRoute(id));
+            var route = m_mapper.Map<RouteDTO>(m_routeRepository.GetRoute(routeId));
 
             if (route == null)
-                return NotFound($"Route with ID {id} not found.");
+                return NotFound($"Route with ID {routeId} not found.");
 
             return Ok(route);
         }
         //-------------------------------------------------------------------------------
 
-        [HttpGet("name/{name}")]
+        [HttpGet("name/{routeName}")]
         [ProducesResponseType(200, Type = typeof(RouteDTO))]
         [ProducesResponseType(404, Type = typeof(string))]
-        public IActionResult GetRouteByName(string name)
+        public IActionResult GetRouteByName(string routeName)
         {
-            var route = m_mapper.Map<RouteDTO>(m_routeRepository.GetRoute(name));
+            var route = m_mapper.Map<RouteDTO>(m_routeRepository.GetRoute(routeName));
 
             if (route == null)
-                return NotFound($"Route with name {name} not found.");
+                return NotFound($"Route with name {routeName} not found.");
 
             return Ok(route);
         }
