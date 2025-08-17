@@ -1,5 +1,6 @@
 ﻿namespace map_app_api.Models
 {
+    //NEED TO ADD LAT/LNG FOR STOP
 
     // Entity depending on the route
     public class Stop

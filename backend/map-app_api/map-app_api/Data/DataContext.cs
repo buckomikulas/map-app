@@ -28,6 +28,15 @@ namespace map_app_api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Stop>()
+                .HasKey(s => new { s.StopId, s.RouteId });
+
+            modelBuilder.Entity<Stop>()
+                .HasOne(s => s.Route)
+                .WithMany(r => r.Stops)
+                .HasForeignKey(s => s.RouteId)
+                .OnDelete(DeleteBehavior.Cascade); // když smažeš trasu, smaž i stops
+
             // Many-to-many relationship between Routes and Tags
             modelBuilder.Entity<RouteTag>()
                 .HasKey(rt => new { rt.RouteId, rt.TagId });

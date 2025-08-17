@@ -53,7 +53,7 @@ namespace map_app_api.Controllers
 
         [HttpGet("name/{name}")]
         [ProducesResponseType(200, Type = typeof(UserDTO))]
-        [ProducesResponseType(404, Type = typeof(string))
+        [ProducesResponseType(404, Type = typeof(string))]
         public IActionResult GetUserByName(string name)
         {
             var user = m_mapper.Map<UserDTO>(m_userRepository.GetUser(name));
