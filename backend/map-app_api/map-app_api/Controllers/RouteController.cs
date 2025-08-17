@@ -54,4 +54,15 @@ namespace map_app_api.Controllers
 
             return Ok(route);
         }
+
+        [HttpGet("stops/{routeId}")]
+        public IActionResult GetStopsByRouteId(int routeId)
+        {
+            var stops = m_mapper.Map<IEnumerable<StopDTO>>(m_routeRepository.GetStopsOnRoute(routeId));
+            if (stops == null || !stops.Any())
+                return NotFound($"No stops found for route ID {routeId}.");
+            
+            return Ok(stops);
+        }
+    }
 }
