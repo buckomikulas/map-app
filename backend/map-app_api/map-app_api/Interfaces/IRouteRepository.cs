@@ -9,5 +9,6 @@ namespace map_app_api.Interfaces
         Models.Route? GetRoute(int id);
         bool RouteExists(string name);
         ICollection<Stop> GetStopsOnRoute(int id);
+        bool AddStopToRoute(int routeId, List<Stop> stop);
     }
 }

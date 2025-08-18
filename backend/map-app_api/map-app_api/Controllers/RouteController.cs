@@ -76,5 +76,23 @@ namespace map_app_api.Controllers
             
             return Ok(stops);
         }
+        //-------------------------------------------------------------------------------
+
+        [HttpPatch("add-stops")]
+        public IActionResult AddStops([FromBody] AddStopsDTO dto)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var stops = m_mapper.Map<List<Stop>>(dto.Stops);
+
+            if(!m_routeRepository.AddStopToRoute(dto.RouteId, stops))
+            {
+                ModelState.AddModelError("", "Something went wrong while adding stops to the route.");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Stops added successfully to the route.");
+        }
+
     }
 }

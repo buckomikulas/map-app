@@ -21,6 +21,8 @@ namespace map_app_api.Helper
              From = src.From,
              To = src.To
          }));
+            CreateMap<StopDTO, Stop>();
+
 
 
         }
