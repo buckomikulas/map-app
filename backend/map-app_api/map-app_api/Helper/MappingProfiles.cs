@@ -13,6 +13,15 @@ namespace map_app_api.Helper
             CreateMap<Stop, StopDTO>();
             CreateMap<Tag, TagDTO>();
 
+            CreateMap<UserRouteCreateDTO, UserRoute>()
+         .ForMember(dest => dest.Route, opt => opt.MapFrom(src => new Models.Route
+         {
+             Name = src.RouteName,
+             Location = src.RouteLocation,
+             From = src.From,
+             To = src.To
+         }));
+
 
         }
     }

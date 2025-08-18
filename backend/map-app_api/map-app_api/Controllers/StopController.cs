@@ -36,7 +36,7 @@ namespace map_app_api.Controllers
             var stop = m_mapper.Map<StopDTO>(m_stopRepository.GetStop(stopName, routeName));
 
             if (stop == null)
-                return NotFound($"Stop with id {stopName}, on route with id {routeName} not found.");
+                return NotFound($"Stop called {stopName}, on route {routeName} not found.");
 
             return Ok(stop);
         }
