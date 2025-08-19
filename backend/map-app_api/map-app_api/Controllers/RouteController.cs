@@ -96,7 +96,7 @@ namespace map_app_api.Controllers
         //-------------------------------------------------------------------------------
 
         [HttpDelete("{routeId}")]
-        [ProducesResponseType(204)]
+        [ProducesResponseType(200)]
         [ProducesResponseType(404, Type = typeof(string))]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
@@ -125,7 +125,7 @@ namespace map_app_api.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return NoContent(); // 204 No Content
+            return Ok($"Route with ID {routeId} deleted successfully.");
 
         }
 
