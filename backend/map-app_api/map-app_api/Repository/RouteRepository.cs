@@ -70,7 +70,7 @@ namespace map_app_api.Repository
             return Save();
         }
         //------------------------------DELETE METHODS----------------------------------- 
-        public bool DeleteRoute(Models.Route route)
+        public bool DeleteRoute(Models.Route route) // mby should check here for nulls instead of controller
         {
             m_dataContext.Routes.Remove(route);
             return Save();

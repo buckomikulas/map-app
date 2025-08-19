@@ -28,5 +28,24 @@ namespace map_app_api.Repository
         {
             return m_dataContext.Stops.Any(s => s.Name == stopName && s.Route.Name == routeName);
         }
+        public bool StopExists(int stopId, int routeId)
+        {
+            return m_dataContext.Stops.Any(s => s.StopId == stopId && s.RouteId == routeId);
+        }
+        public bool Save()
+        {
+            return m_dataContext.SaveChanges() >= 0;
+        }
+        public bool DeleteStopFromRoute(int stopId, int routeId)
+        {
+            var stop = m_dataContext.Stops
+                .FirstOrDefault(s => s.StopId == stopId && s.RouteId == routeId);
+
+            if (stop == null) 
+                return false;
+
+            m_dataContext.Stops.Remove(stop);
+            return Save();
+        }
     }
 }
