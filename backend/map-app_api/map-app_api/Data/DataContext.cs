@@ -67,7 +67,8 @@ namespace map_app_api.Data
             modelBuilder.Entity<UserRoute>()
                 .HasOne(ur => ur.Route)
                 .WithMany(r => r.UserRoutes)
-                .HasForeignKey(ur => ur.RouteId);
+                .HasForeignKey(ur => ur.RouteId)
+                .OnDelete(DeleteBehavior.Cascade); // Delete user routes when the route is deleted
 
             // User name is not nullable
             modelBuilder.Entity<User>()
