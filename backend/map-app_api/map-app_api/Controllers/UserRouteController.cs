@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace map_app_api.Controllers
 {
+    // Controller mainly for creating ROUTES and mapping them with provided userID
+    // FUTURE CHANGE - Delelte this controller and use RouteController for creating routes
     [ApiController]
     [Route("api/[controller]")]
     public class UserRouteController : ControllerBase
