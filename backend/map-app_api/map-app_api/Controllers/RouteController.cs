@@ -93,6 +93,41 @@ namespace map_app_api.Controllers
 
             return Ok("Stops added successfully to the route.");
         }
+        //-------------------------------------------------------------------------------
+
+        [HttpDelete("{routeId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404, Type = typeof(string))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        // Deletes a route WITH all its stops and the record in UserRoute table!!!
+        // RouteTag table is not finished yet so the record wont be deleted BUT IT SHOULD AND WILL IN THE FUTURE
+        public IActionResult DeleteRoute(int routeId)
+        {
+            if(!m_routeRepository.RouteExists(routeId))
+            {
+                return NotFound($"Route with ID {routeId} not found.");
+            }
+
+            var toDel = m_routeRepository.GetRoute(routeId);
+
+            if (toDel == null)
+            {
+                return NotFound("Route not found.");
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!m_routeRepository.DeleteRoute(toDel))
+            {
+                ModelState.AddModelError("", "Something went wrong while deleting the route.");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent(); // 204 No Content
+
+        }
 
     }
 }

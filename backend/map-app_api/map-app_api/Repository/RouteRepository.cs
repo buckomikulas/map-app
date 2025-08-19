@@ -16,6 +16,7 @@ namespace map_app_api.Repository
             m_dataContext = dataContext;
         }
 
+        //------------------------------READ METHODS----------------------------------- 
         public Models.Route? GetRoute(string name)
         {
             return m_dataContext.Routes.FirstOrDefault(r => r.Name == name);
@@ -40,8 +41,13 @@ namespace map_app_api.Repository
         {
             return m_dataContext.Routes.Any(r => r.Name == name);
         }
+        public bool RouteExists(int id)
+        {
+            return m_dataContext.Routes.Any(r => r.RouteId == id);
+        }
 
-        //----------------------------------------------------------------
+
+        //------------------------------PATCH METHODS----------------------------------- 
         public bool AddStopToRoute(int routeId, List<Stop> stop)
         {
             var route = m_dataContext.Routes.Include(r => r.Stops)
@@ -61,6 +67,19 @@ namespace map_app_api.Repository
                 m_dataContext.Stops.Add(s);
             }
 
+            return Save();
+        }
+        //------------------------------DELETE METHODS----------------------------------- 
+        public bool DeleteRoute(Models.Route route)
+        {
+            m_dataContext.Routes.Remove(route);
+            return Save();
+        }
+
+
+        //Save method
+        public bool Save()
+        {
             return m_dataContext.SaveChanges() > 0;
         }
     }
